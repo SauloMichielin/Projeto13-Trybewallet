@@ -2,7 +2,7 @@
 export const ADD_LOGIN = 'ADD_LOGIN';
 
 // ACTIONS CREATORS
-export const addLogin = (login) => ({
+export const addLogin = (loginInfo) => ({
   type: ADD_LOGIN,
-  payload: { ...login },
+  payload: { ...loginInfo },
 });

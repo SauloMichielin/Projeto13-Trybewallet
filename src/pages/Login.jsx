@@ -1,11 +1,12 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { addLogin } from '../redux/actions';
 
 class Login extends React.Component {
   state = {
-    disabledOption: true,
     email: '',
     senha: '',
+    disabledOption: true,
   };
 
   onHandleChange = (event) => {
@@ -27,6 +28,7 @@ class Login extends React.Component {
   handleSubmit = (event) => {
     event.preventDefault();
     const { dispatch } = this.props;
+    console.log(dispatch);
     dispatch(addLogin(this.state));
   };
 
@@ -36,6 +38,7 @@ class Login extends React.Component {
       <form
         onSubmit={ this.handleSubmit }
       >
+        <h1>Faça Login</h1>
         <label htmlFor="emailInput" data-testid="email-input">
           Email
           <input
