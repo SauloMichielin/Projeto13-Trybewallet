@@ -9,8 +9,8 @@ import usuarioReducer from './user';
 import despesasReducer from './wallet';
 
 const rootReducer = combineReducers({
-  usuario: usuarioReducer,
-  despesa: despesasReducer,
+  user: usuarioReducer,
+  wallet: despesasReducer,
 });
 
 export default rootReducer;

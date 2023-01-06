@@ -60,7 +60,7 @@ class Login extends React.Component {
             onChange={ this.onHandleChange }
           />
         </label>
-        <button type="submit" disabled={ disabledOption }>Enviar</button>
+        <button type="submit" disabled={ disabledOption }>Entrar</button>
       </form>
     );
   }
