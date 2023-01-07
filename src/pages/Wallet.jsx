@@ -1,6 +1,6 @@
 import React from 'react';
-import Header from '../components/Header';
 import { connect } from 'react-redux';
+import Header from '../components/Header';
 
 class Wallet extends React.Component {
   render() {
@@ -9,12 +9,12 @@ class Wallet extends React.Component {
         <div>TrybeWallet</div>
         <Header />
       </>
-    )
+    );
   }
 }
 
-const mapStateToProps = () => {
-  
-}
+// const mapStateToProps = () => {
+
+// };
 
 export default connect(mapStateToProps)(Wallet);
