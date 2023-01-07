@@ -1,5 +1,6 @@
 import React from 'react';
 import Header from '../components/Header';
+import { connect } from 'react-redux';
 
 class Wallet extends React.Component {
   render() {
@@ -12,4 +13,8 @@ class Wallet extends React.Component {
   }
 }
 
-export default Wallet;
+const mapStateToProps = () => {
+  
+}
+
+export default connect(mapStateToProps)(Wallet);

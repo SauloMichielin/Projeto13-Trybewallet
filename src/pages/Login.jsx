@@ -14,10 +14,10 @@ class Login extends React.Component {
     const { target } = event;
     this.setState({
       [target.name]: target.value }, () => {
-      const {
-        email,
-        senha,
-      } = this.state;
+        const {
+          email,
+          senha,
+        } = this.state;
       const textoMinimo = 6;
       const regex = /\S+@\S+\.\S+/;
       const disableState = regex.test(email)
