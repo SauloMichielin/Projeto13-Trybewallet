@@ -6,16 +6,16 @@ const INITIAL_STATE = {
   senha: '',
 };
 
-const usuarioReducer = (state = INITIAL_STATE, action) => {
-  switch (action.type) {
+const user = (state = INITIAL_STATE, { type, payload }) => {
+  switch (type) {
   case ADD_LOGIN: {
     return {
       ...state,
-      ...action.payload,
+      ...payload,
     };
   }
   default: return state;
   }
 };
 
-export default usuarioReducer;
+export default user;

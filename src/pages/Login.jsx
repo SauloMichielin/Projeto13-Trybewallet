@@ -40,7 +40,7 @@ class Login extends React.Component {
         onSubmit={ this.handleSubmit }
       >
         <h1>Faça Login</h1>
-        <label htmlFor="emailInput" data-testid="email-input">
+        <label htmlFor="emailInput">
           Email
           <input
             type="email"
@@ -48,9 +48,10 @@ class Login extends React.Component {
             value={ email }
             id="emailInput"
             onChange={ this.onHandleChange }
+            data-testid="email-input"
           />
         </label>
-        <label htmlFor="senhaInput" data-testid="password-input">
+        <label htmlFor="senhaInput">
           Senha
           <input
             type="password"
@@ -58,6 +59,7 @@ class Login extends React.Component {
             value={ senha }
             id="senhaInput"
             onChange={ this.onHandleChange }
+            data-testid="password-input"
           />
         </label>
         <button type="submit" disabled={ disabledOption }>Entrar</button>

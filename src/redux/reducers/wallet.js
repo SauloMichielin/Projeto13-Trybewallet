@@ -3,11 +3,11 @@ const INITIAL_STATE = {
   valor: '',
 };
 
-const despesasReducer = (state = INITIAL_STATE, action) => {
+const wallet = (state = INITIAL_STATE, action) => {
   switch (action.type) {
   default:
     return state;
   }
 };
 
-export default despesasReducer;
+export default wallet;
