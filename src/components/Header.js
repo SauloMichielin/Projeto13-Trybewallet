@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 
 class Header extends Component {
   state = {
@@ -14,15 +15,15 @@ class Header extends Component {
       <>
         <div>Header</div>
         <div data-testid="email-field">
-          Email: 
+          Email:
           { email }
         </div>
         <div data-testid="total-field">
-          Despesa total: 
+          Despesa total:
           { valor }
         </div>
         <div data-testid="header-currency-field">
-          Moeda: 
+          Moeda:
           { cambio }
         </div>
       </>
@@ -30,8 +31,12 @@ class Header extends Component {
   }
 }
 
-const mapStateToProps = (state) => {
-  return { email: state.user.email };
-};
+Header.propTypes = {
+  email: PropTypes.string,
+}.isRequired;
+
+const mapStateToProps = (state) => (
+  { email: state.user.email }
+);
 
 export default connect(mapStateToProps)(Header);
