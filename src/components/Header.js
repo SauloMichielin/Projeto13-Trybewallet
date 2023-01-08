@@ -13,7 +13,6 @@ class Header extends Component {
     const { valor, cambio } = this.state;
     return (
       <>
-        <div>Header</div>
         <div data-testid="email-field">
           Email:
           { email }
