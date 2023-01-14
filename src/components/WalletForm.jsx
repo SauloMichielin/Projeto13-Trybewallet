@@ -1,14 +1,17 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
+import { addDespesa } from '../redux/actions';
 
 class WalletForm extends Component {
   state = {
+    id: 0,
     valor: 0,
     moeda: 'USD',
     metodo: 'Dinheiro',
     categoria: 'Alimentação',
     descricao: '',
+    expenses: [],
   };
 
   // async componentDidMount() {
@@ -25,8 +28,27 @@ class WalletForm extends Component {
     this.setState({ [name]: value });
   };
 
+  handleClick = (event) => {
+    const { dispatch } = this.props;
+    const { id } = this.state;
+    event.preventDefault();
+    dispatch(addDespesa(this.state));
+    this.setstate({
+      id: (id + 1),
+    }, () => {
+      this.setState({
+        valor: 0,
+        moeda: 'USD',
+        metodo: 'Dinheiro',
+        categoria: 'Alimentação',
+        descricao: '',
+      });
+    });
+  };
+
   render() {
     const {
+      id,
       valor,
       moeda,
       metodo,
@@ -102,7 +124,11 @@ class WalletForm extends Component {
               onChange={ this.handleChange }
             />
           </label>
-          <input type="submit" value="Adicionar despesa" />
+          <input
+            type="submit"
+            value="Adicionar despesa"
+            onClick={ this.handleClick }
+          />
         </form>
       </>
     );
