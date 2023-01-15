@@ -6,12 +6,11 @@ import { addDespesa } from '../redux/actions';
 class WalletForm extends Component {
   state = {
     id: 0,
-    valor: 0,
+    valor: '',
     moeda: 'USD',
     metodo: 'Dinheiro',
     categoria: 'Alimentação',
     descricao: '',
-    expenses: [],
   };
 
   // async componentDidMount() {
@@ -29,15 +28,30 @@ class WalletForm extends Component {
   };
 
   handleClick = (event) => {
-    const { dispatch } = this.props;
-    const { id } = this.state;
     event.preventDefault();
-    dispatch(addDespesa(this.state));
-    this.setstate({
+    const { dispatch } = this.props;
+    const {
+      id,
+      valor,
+      moeda,
+      metodo,
+      categoria,
+      descricao,
+    } = this.state;
+    const objeto = {
+      id,
+      valor,
+      moeda,
+      metodo,
+      categoria,
+      descricao,
+    };
+    dispatch(addDespesa(objeto));
+    this.setState({
       id: (id + 1),
     }, () => {
       this.setState({
-        valor: 0,
+        valor: '',
         moeda: 'USD',
         metodo: 'Dinheiro',
         categoria: 'Alimentação',
