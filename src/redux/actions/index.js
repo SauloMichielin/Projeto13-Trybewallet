@@ -12,7 +12,7 @@ export const addLogin = (loginInfo) => ({
   payload: { ...loginInfo },
 });
 
-export const currency = (data) => ({
+export const currencyAction = (data) => ({
   type: CURRENCIES_SUCCESS,
   payload: data,
 });

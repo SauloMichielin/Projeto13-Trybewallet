@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { addDespesa } from '../redux/actions';
+import { addDespesa, currencyAction } from '../redux/actions';
 
 class WalletForm extends Component {
   state = {
@@ -13,14 +13,25 @@ class WalletForm extends Component {
     description: '',
   };
 
-  // async componentDidMount() {
-  //   taxasApi();
-  // }
+  // The big boss!!!
+  componentDidMount() {
+    this.filtro();
+  }
 
-  // getCurrency = () => {
-  //   const { dispatch } = this.props;
-  //   dispatch(updatedTable(this.state));
-  // };
+  requisicao = async () => {
+    const response = await fetch('https://economia.awesomeapi.com.br/json/all');
+    const data = await response.json();
+    return data;
+  };
+
+  filtro = async () => {
+    const { dispatch } = this.props;
+    const objeto = await this.requisicao();
+    delete objeto.USDT;
+    const moedas = Object.entries(objeto).map((a) => a[0]);
+    console.log(moedas);
+    dispatch(currencyAction(moedas));
+  };
 
   handleChange = (event) => {
     const { name, value } = event.target;
@@ -40,7 +51,6 @@ class WalletForm extends Component {
     event.preventDefault();
     const api = await fetch('https://economia.awesomeapi.com.br/json/all');
     const retorno = await api.json();
-    // parseFloat(value);
     const objeto = {
       id,
       value,
