@@ -32,3 +32,8 @@ export const addSoma = (valor) => ({
   type: ADD_SOMA,
   payload: valor,
 });
+
+export const delLanc = (state) => ({
+  type: DEL_LANC,
+  payload: state,
+});

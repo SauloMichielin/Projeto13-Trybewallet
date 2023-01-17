@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import { delLanc } from '../redux/actions';
 
 class Table extends Component {
   render() {
-    const { lancamentos } = this.props;
+    const { lancamentos, dispatch } = this.props;
     return (
       <table>
         <thead>
@@ -56,6 +57,8 @@ class Table extends Component {
                 </button>
                 <button
                   type="button"
+                  data-testid="delete-btn"
+                  onClick={ () => dispatch(delLanc(a)) }
                 >
                   Excluir
                 </button>
