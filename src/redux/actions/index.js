@@ -5,6 +5,7 @@ export const CURRENCIES_SUCCESS = 'CURRENCIES_SUCCESS';
 export const ADD_DESPESA = 'ADD_DESPESA';
 export const ADD_TAXA = 'ADD_TAXA';
 export const ADD_SOMA = 'ADD_SOMA';
+export const DEL_LANC = 'DEL_LANC';
 
 // ACTIONS CREATORS
 export const addLogin = (loginInfo) => ({
