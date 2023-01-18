@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { addDespesa, currencyAction } from '../redux/actions';
+import { addDespesa, currencyAction, editItens } from '../redux/actions';
 
 class WalletForm extends Component {
   state = {
@@ -13,7 +13,6 @@ class WalletForm extends Component {
     description: '',
   };
 
-  // The big boss!!!
   componentDidMount() {
     this.filtro();
   }
@@ -38,7 +37,35 @@ class WalletForm extends Component {
     this.setState({ [name]: value });
   };
 
-  handleClick = async (event) => {
+  handleEdit = (event) => {
+    event.preventDefault();
+    const { dispatch, idItens, lancamentos } = this.props;
+    const {
+      value,
+      currency,
+      method,
+      tag,
+      description,
+    } = this.state;
+    const nextState = {
+      id: idItens[0].id,
+      value,
+      currency,
+      method,
+      tag,
+      description,
+      exchangeRates: idItens[0].exchangeRates,
+    };
+    const novoArray = lancamentos.map((expense) => {
+      if (expense.id === nextState.id) {
+        return nextState;
+      }
+      return expense;
+    });
+    dispatch(editItens(novoArray));
+  };
+
+  handleAdd = async (event) => {
     const { dispatch } = this.props;
     const {
       id,
@@ -72,12 +99,6 @@ class WalletForm extends Component {
         description: '',
       });
     });
-    // let soma = 0;
-    // const valores = lancamentos.map((a) => +a.valor);
-    // soma = valores.reduce((acumulador, numero) => {
-    //   return acumulador += numero;
-    // }, 0);
-    // dispatch(addSoma(soma));
   };
 
   render() {
@@ -87,7 +108,7 @@ class WalletForm extends Component {
       method,
       tag,
       description } = this.state;
-    const { currencies } = this.props;
+    const { currencies, editor } = this.props;
     return (
       <>
         <div>WalletForm</div>
@@ -157,11 +178,12 @@ class WalletForm extends Component {
               onChange={ this.handleChange }
             />
           </label>
-          <input
+          <button
             type="submit"
-            value="Adicionar despesa"
-            onClick={ this.handleClick }
-          />
+            onClick={ editor ? this.handleEdit : this.handleAdd }
+          >
+            { editor ? 'Editar despesa' : 'Adicionar despesa' }
+          </button>
         </form>
       </>
     );
@@ -171,10 +193,14 @@ class WalletForm extends Component {
 const mapStateToProps = (state) => ({
   currencies: state.wallet.currencies,
   lancamentos: state.wallet.expenses,
+  idItens: state.wallet.idToEdit,
+  editor: state.wallet.editor,
 });
 
 WalletForm.propTypes = {
   currencies: PropTypes.arrayOf(PropTypes.string),
+  lancamentos: PropTypes.arrayOf(PropTypes.string),
+  idItens: PropTypes.arrayOf(PropTypes.string),
 }.isRequired;
 
 export default connect(mapStateToProps)(WalletForm);

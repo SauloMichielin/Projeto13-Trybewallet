@@ -6,6 +6,8 @@ export const ADD_DESPESA = 'ADD_DESPESA';
 export const ADD_TAXA = 'ADD_TAXA';
 export const ADD_SOMA = 'ADD_SOMA';
 export const DEL_LANC = 'DEL_LANC';
+export const EDIT_LANC = 'EDIT_LANC';
+export const EDIT_ITENS = 'EDIT_ITENS';
 
 // ACTIONS CREATORS
 export const addLogin = (loginInfo) => ({
@@ -35,5 +37,15 @@ export const addSoma = (valor) => ({
 
 export const delLanc = (state) => ({
   type: DEL_LANC,
+  payload: state,
+});
+
+export const editLanc = (state) => ({
+  type: EDIT_LANC,
+  payload: state,
+});
+
+export const editItens = (state) => ({
+  type: EDIT_ITENS,
   payload: state,
 });

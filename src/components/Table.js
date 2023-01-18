@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { delLanc } from '../redux/actions';
+import { delLanc, editLanc } from '../redux/actions';
 
 class Table extends Component {
   render() {
@@ -52,6 +52,8 @@ class Table extends Component {
               <td>
                 <button
                   type="button"
+                  data-testid="edit-btn"
+                  onClick={ () => dispatch(editLanc(a)) }
                 >
                   Editar
                 </button>

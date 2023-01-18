@@ -4,11 +4,15 @@ import { CURRENCIES_SUCCESS,
   ADD_TAXA,
   ADD_SOMA,
   DEL_LANC,
+  EDIT_LANC,
+  EDIT_ITENS,
 } from '../actions';
 
 const INITIAL_STATE = {
   currencies: [],
   expenses: [],
+  editor: false, // valor booleano que indica de uma despesa está sendo editada
+  idToEdit: 0, // valor numérico que armazena o id da despesa que esta sendo editada
 };
 
 const wallet = (state = INITIAL_STATE, action) => {
@@ -37,6 +41,18 @@ const wallet = (state = INITIAL_STATE, action) => {
     return {
       ...state,
       expenses: state.expenses.filter((a) => a.id !== action.payload.id),
+    };
+  case EDIT_LANC:
+    return {
+      ...state,
+      editor: true,
+      idToEdit: state.expenses.filter((a) => a.id === action.payload.id),
+    };
+  case EDIT_ITENS:
+    return {
+      ...state,
+      editor: false,
+      expenses: action.payload,
     };
   default:
     return state;
