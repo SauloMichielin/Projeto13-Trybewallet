@@ -33,7 +33,7 @@ const mockFetch = () => Promise.resolve({
   json: () => Promise.resolve(mockData),
 });
 
-describe('Testes do componente WalletForm', () => {
+describe('Testes do componente Wallet', () => {
   beforeEach(() => {
     global.fetch = jest.fn(mockFetch);
   });
